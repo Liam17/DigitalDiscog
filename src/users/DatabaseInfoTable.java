@@ -179,18 +179,28 @@ public class DatabaseInfoTable {
 
             boolean change = false;
 
-            do{
+            do{// Sort query based on which date is the most recent
                 for(int i=1; i<storeInfo.size(); i++){
                     Dates first = new Dates(storeInfo.get(i).getDateModified());
                     Dates second = new Dates(storeInfo.get(i+1).getDateModified());
 
-                    if(first.whichCameLast(first,second) == 1){
+                    int recent = first.whichCameLast(first,second);
 
+                    if(recent == 1){
+                        // It's in order
+                    }else if (recent == 2){
+                        DatabaseInfo dI = storeInfo.get(i);
+                        storeInfo.put(i,storeInfo.get(i+1));
+                        storeInfo.put(i+1,dI);
                     }
-
+                    else{
+                        // They're the same data so do nothing
+                    }
 
                 }
             }while(change);
+
+            databaseInfoToReturn = storeInfo.get(1);
 
 
         }catch(SQLException e) {
