@@ -115,9 +115,8 @@ public class DigitalDiscog {
                 /*TODO
                 - Go back if you fucked up
                 - Make it into a website
-                - Make users database
                 - Only submit things if there's no errors
-                - Sort based on date modified
+                - What if there's more than 1 artist on an album?
                 */
 
                 AlbumsListTable albumsListTable = new AlbumsListTable(conn);
@@ -153,10 +152,10 @@ public class DigitalDiscog {
                                 genresTable.displayAllGenres();
                                 System.out.println();
 
-                                System.out.println("What genre(s) is this album? (If more than 1, separate them by a (&) and no spaces)");
+                                System.out.println("What genre(s) is this album? (If more than 1, separate them by a (,) and no spaces)");
                                 String genre = br.readLine();
 
-                                String[] genreDecomposed = genre.split("&");
+                                String[] genreDecomposed = genre.split(",");
                                 for (int i = 0; i<genreDecomposed.length; i++){
                                     // Check if genre exists is in database
                                     if(!genresTable.exists(genreDecomposed[i])){
@@ -334,10 +333,10 @@ public class DigitalDiscog {
                                             albumsList.printAlbumsList();
                                         }
                                         if (answer == 2){
-                                            System.out.println("What genre(s) would you like to add? (If more than 1, separate them by a (&) and no spaces)");
+                                            System.out.println("What genre(s) would you like to add? (If more than 1, separate them by a (,) and no spaces)");
                                             String genre = br.readLine();
 
-                                            String[] genreDecomposed = genre.split("&");
+                                            String[] genreDecomposed = genre.split(",");
                                             for (int i = 0; i<genreDecomposed.length; i++){
                                                 // Check if genre exists is in database
                                                 if(!genresTable.exists(genreDecomposed[i])){

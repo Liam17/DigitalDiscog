@@ -30,13 +30,13 @@ public class AlbumsList {
     }
 
     public String appendToGenres(String genre){
-        this.genre = this.genre + "&" + genre;
+        this.genre = this.genre + "," + genre;
         this.genre = orderGenresAlphabetically(this.genre);
         return this.genre;
     }
 
     public String orderGenresAlphabetically(String genre){
-        String[] genreDecomposed = genre.split("&");
+        String[] genreDecomposed = genre.split(",");
         String saveGenre;
         boolean switches = false;
         do{
